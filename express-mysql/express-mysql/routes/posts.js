@@ -140,7 +140,7 @@ router.post('/update/:id', function(req, res, next) {
         }
 
         // update query
-        connection.query('UPDATE tbl_42_post SET ? WHERE id = ' + id, formData, function(err, result) {
+        connection.query('UPDATE       SET ? WHERE id = ' + id, formData, function(err, result) {
             if (err) {
                 req.flash('error', err);
                 // render to views/posts/edit.ejs
@@ -157,26 +157,6 @@ router.post('/update/:id', function(req, res, next) {
         })
     }
 })
-
-
-// Delete Post
-router.get('/delete/(:id)', function(req, res, next) {
-    let id = req.params.id;
-
-    connection.query('DELETE FROM tbl_42_post WHERE id = ' + id, function(err, result) {
-        // if error
-        if (err) {
-            req.flash('error', err);
-            // redirect to posts page
-            res.redirect('/posts');
-        } else {
-            // if success
-            req.flash('success', 'Data deleted successfully!');
-            res.redirect('/posts');
-        }
-    })
-})
-
 
 module.exports = router;
 
